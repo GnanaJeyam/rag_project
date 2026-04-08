@@ -86,10 +86,8 @@ async def rag_query(ctx: inngest.Context):
     question = ctx.event.data["question"]
 
     context_chunks = await ctx.step.run("embed_and_search_question", lambda: embed_and_search(ctx), output_type=list[dict[str, str]])
-    logging.info("Context chunks: %s", context_chunks)
     answer = await ctx.step.run("ask_llm", lambda: ask_llm(context_chunks, question), output_type=str)
     sources = [chunk['source_id'] for chunk in context_chunks]
-    logging.info("Answer from LLM: %s", sources)
 
     return {"answer": answer, "sources": sources}
 
