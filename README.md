@@ -6,9 +6,7 @@ A production-style **Retrieval-Augmented Generation (RAG)** application that let
 
 ## 🎬 Demo
 
-<video src="https://github.com/GnanaJeyam/rag_project/raw/main/Rag_Walkthrough.mp4" controls width="100%">
-  Your browser does not support the video tag.
-</video>
+![RAG App Walkthrough](Rag_Walkthrough.gif)
 
 ---
 
