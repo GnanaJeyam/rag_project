@@ -4,6 +4,12 @@ A production-style **Retrieval-Augmented Generation (RAG)** application that let
 
 ---
 
+## 🎬 Demo
+
+https://raw.githubusercontent.com/GnanaJeyam/rag_project/main/Rag_Walkthrough.mp4
+
+---
+
 ## 📤 Uploading a PDF
 
 ```
