@@ -52,6 +52,7 @@ st.set_page_config(page_title="RAG — PDF Q&A", page_icon="📄", layout="cente
 st.markdown(
     """
     <style>
+    [data-testid="stMainMenu"], [data-testid="stToolbar"] { display: none; }
     .block-container { max-width: 720px; padding-top: 2rem; }
     h1 { letter-spacing: -0.5px; }
     .stDivider { margin: 1.5rem 0; }
@@ -135,20 +136,20 @@ async def send_query_event(qstn: str) -> str:
 with st.container(border=True):
     st.subheader("2 · Ask a Question")
 
-    question = st.text_area(
-        label="Your question",
-        placeholder="e.g.  What are the key skills mentioned in the resume?",
-        height=120,
-        label_visibility="collapsed",
-    )
+    with st.form("query_form", clear_on_submit=False):
+        question = st.text_area(
+            label="Your question",
+            placeholder="e.g.  What are the key skills mentioned in the resume?",
+            height=120,
+            label_visibility="collapsed",
+        )
 
-    col_submit, col_clear = st.columns([1, 1])
-    with col_submit:
-        submit = st.button("🔍  Submit", use_container_width=True, type="primary")
-    with col_clear:
-        clear = st.button("🗑  Clear", use_container_width=True)
+        col_submit, col_clear = st.columns([1, 1])
+        with col_submit:
+            submit = st.form_submit_button("🔍  Submit", use_container_width=True, type="primary")
 
-    if clear:
+    # Clear button lives outside the form
+    if st.button("🗑  Clear", use_container_width=False):
         for key in ("query_answer", "query_sources"):
             st.session_state.pop(key, None)
         st.rerun()
